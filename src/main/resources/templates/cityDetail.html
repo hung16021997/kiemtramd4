@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Chi tiết thành phố</h1>
+<button>
+    <a href="/"> Xem danh sách thành phố</a>
+</button>
+<br><br>
+<div>
+    <!--    <th:block th:if="${action}">-->
+    <!--        <h1 th:text="${action}"></h1>-->
+    <!--    </th:block>-->
+    <!--    <th:block th:if="${message}">-->
+    <!--        <h1 th:text="${message}"></h1>-->
+    <!--    </th:block>-->
+    <form action="#" th:action="@{/save}" method="post" th:object="${city}">
+        <th:block th:if="${city.getId() != null}">
+            <input type="hidden" th:field="*{id}">
+        </th:block>
+        <table th:border="1">
+            <tr>
+                <td>Tên</td>
+                <td th:text="${city.name}"></td>
+            </tr>
+            <tr>
+                <td>Quốc gia</td>
+                <td th:text="${city.country.getName()}"></td>
+            </tr>
+            <tr>
+                <td>Diện tích</td>
+                <td th:text="${city.area}"></td>
+            </tr>
+            <tr>
+                <td>Dân số</td>
+                <td th:text="${city.population}"></td>
+            </tr>
+            <tr>
+                <td>GDP</td>
+                <td th:text="${city.gdp}"></td>
+            </tr>
+            <tr>
+                <td>Giới thiệu</td>
+                <td th:text="${city.description}"></td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <button>
+            <a th:href="@{/edit/__${city.getId()}__}">
+                Chỉnh sửa
+            </a>
+        </button>
+        <button>
+            <a th:href="@{/edit/__${city.getId()}__}">
+                Xóa
+            </a>
+        </button>
+    </form>
+</div>
+</body>
+</html>

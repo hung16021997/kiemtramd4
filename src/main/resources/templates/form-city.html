@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <th:block th:if="${action}">
+        <h1 th:text="${action}"></h1>
+    </th:block>
+    <th:block th:if="${message}">
+        <h1 th:text="${message}"></h1>
+    </th:block>
+    <button>
+        <a href="/"> Xem danh sách thành phố</a>
+    </button>
+    <br>
+    <br>
+    <form action="#" th:action="@{/save}" method="post" th:object="${city}">
+        <th:block th:if="${city.getId() != null}">
+            <input type="hidden" th:field="*{id}">
+        </th:block>
+        <table>
+            <tr>
+                <td>Tên</td>
+                <td><input type="text" th:field="*{name}"></td>
+            </tr>
+            <tr>
+                <td>Quốc gia</td>
+                <td>
+                    <select th:field="*{country}">
+                        <option th:each="count : ${countries}" th:value="${count.getId()}" th:text="${count.getName()}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Diện tích</td>
+                <td><input type="text" th:field="*{area}"></td>
+            </tr>
+            <tr>
+                <td>Dân số</td>
+                <td><input type="text" th:field="*{population}"></td>
+            </tr>
+            <tr>
+                <td>GDP</td>
+                <td><input type="text" th:field="*{gdp}"></td>
+            </tr>
+            <tr>
+                <td>Giới thiệu</td>
+                <td><input type="text" th:field="*{description}"></td>
+            </tr>
+            <tr>
+                <td>
+                    <Button>Save</Button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <a href="/"> Back to City list</a>
+</div>
+</body>
+</html>

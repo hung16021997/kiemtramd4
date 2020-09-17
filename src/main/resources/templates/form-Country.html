@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <th:block th:if="${action}">
+        <h1 th:text="${action}"></h1>
+    </th:block>
+    <th:block th:if="${message}">
+        <h1 th:text="${message}"></h1>
+    </th:block>
+    <button>
+        <a href="/"> Xem danh sách thành phố</a>
+    </button>
+    <br>
+    <br>
+    <form action="#" th:action="@{/saveCountry}" method="post" th:object="${country}">
+        <th:block th:if="${country.getId() != null}">
+            <input type="hidden" th:field="*{id}">
+        </th:block>
+        <table>
+            <tr>
+                <td>Tên</td>
+                <td><input type="text" th:field="*{name}"></td>
+            </tr>
+            <tr>
+                <td>
+                    <Button>Save</Button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <a href="/"> Back to City list</a>
+</div>
+</body>
+</html>
